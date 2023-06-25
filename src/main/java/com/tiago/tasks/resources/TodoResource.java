@@ -1,5 +1,7 @@
 package com.tiago.tasks.resources;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +17,17 @@ import com.tiago.tasks.services.TodoService;
 public class TodoResource {
 
 	@Autowired
-	private TodoService todoService;
+	private TodoService service;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Todo> findById(@PathVariable Integer id){
-		Todo obj = todoService.findById(id);
+		Todo obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	@GetMapping(value = "/open")
+	public ResponseEntity<List<Todo>> listOpen(){
+		return ResponseEntity.ok().body(service.findAllOpen());
 	}
 	
 }

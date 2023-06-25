@@ -1,8 +1,10 @@
 package com.tiago.tasks.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.tiago.tasks.domain.Todo;
@@ -12,11 +14,15 @@ import com.tiago.tasks.repositories.TodoRepository;
 public class TodoService {
 	
 	@Autowired
-	private TodoRepository todoRepository;
+	private TodoRepository repository;
 	
 	public Todo findById(Integer id) {
-		Optional<Todo> obj = todoRepository.findById(id);
+		Optional<Todo> obj = repository.findById(id);
 		return obj.orElse(null);
+	}
+
+	public List<Todo> findAllOpen() {
+		return repository.findAllOpen();
 	}
 
 }
