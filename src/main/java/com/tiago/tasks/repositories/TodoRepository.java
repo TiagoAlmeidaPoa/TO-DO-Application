@@ -14,4 +14,7 @@ public interface TodoRepository extends JpaRepository<Todo, Integer>{
 	@Query("SELECT obj FROM Todo obj WHERE obj.finished = false ORDER BY obj.endDate")
 	public List<Todo> findAllOpen();
 
+	@Query("SELECT obj FROM Todo obj WHERE obj.finished = true ORDER BY obj.endDate")
+	public List<Todo> findAllClose();
+
 }
