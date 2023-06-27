@@ -28,4 +28,8 @@ public class TodoService {
 		return repository.findAllClose();
 	}
 
+	public List<Todo> findAll() {
+		return repository.findAll();
+	}
+
 }
