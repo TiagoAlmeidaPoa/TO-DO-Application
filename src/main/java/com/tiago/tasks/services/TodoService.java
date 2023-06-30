@@ -32,4 +32,9 @@ public class TodoService {
 		return repository.findAll();
 	}
 
+	public Todo create(Todo obj) {
+		obj.setId(null);
+		return repository.save(obj);
+	}
+
 }
