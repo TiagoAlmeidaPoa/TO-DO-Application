@@ -1,5 +1,7 @@
 package com.tiago.tasks.services;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -16,14 +18,14 @@ public class DBService {
 	@Autowired
 	private TodoRepository todoRepository;
 
-	public void instanciaBaseDeDados() {
+	public void instanciaBaseDeDados() throws ParseException {
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		Todo t1 = new Todo(null, "corrida", "correr no parque", LocalDateTime.parse("25/03/2023 10:45", formatter), true);
-		Todo t2 = new Todo(null, "estudar", "estudar java", LocalDateTime.parse("26/06/2023 22:00", formatter), false);
-		Todo t3 = new Todo(null, "nadar", "aula de natação no club", LocalDateTime.parse("27/06/2023 10:00", formatter), false);
-		Todo t4 = new Todo(null, "skate", "andar de skate na pista", LocalDateTime.parse("28/06/2023 16:20", formatter), false);
+		Todo t1 = new Todo(null, "corrida", "correr no parque", sdf.parse("25/03/2023"), true);
+		Todo t2 = new Todo(null, "estudar", "estudar java", sdf.parse("26/06/2023"), false);
+		Todo t3 = new Todo(null, "nadar", "aula de natação no club", sdf.parse("27/06/2023"), false);
+		Todo t4 = new Todo(null, "skate", "andar de skate na pista", sdf.parse("28/06/2023"), false);
 		todoRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 
 	}

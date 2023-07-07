@@ -1,12 +1,14 @@
 package com.tiago.tasks.domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +29,9 @@ public class Todo implements Serializable {
 
 	private String title;
 	private String description;
-	private LocalDateTime endDate;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private Date endDate;
 	private Boolean finished;
 
 }
